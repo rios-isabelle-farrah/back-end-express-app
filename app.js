@@ -4,8 +4,7 @@ const transactionsController = require("./controllers/transactions");
 const cors = require('cors')
 const app = express();
 require("dotenv").config();
-// const appJson = express.json();
-// console.log(appJson.toString());
+const PORT = process.env.PORT || 3001;
 app.use(express.json()); // this line is adding 'body' key to the req object
 app.use(cors())
 
