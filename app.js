@@ -1,21 +1,22 @@
 
 const express = require("express");
 const transactionsController = require("./controllers/transactions");
-const cors = require('cors')
+// const cors = require('cors')
 const app = express();
-
-// const appJson = express.json();
-// console.log(appJson.toString());
+const cors = cors();
+require("dotenv").config();
 app.use(express.json()); // this line is adding 'body' key to the req object
 app.use(cors())
+
 
 app.use((req, res, next) => {
   console.log(`${req.method} request made at ${req.url}`);
   next();
 });
 
-
-
+app.get("/", (req, res) => {
+  res.send("Basic Express App - ROOT");
+});
 
 
 app.use("/transactions", transactionsController);
@@ -24,9 +25,6 @@ app.use("/transactions", transactionsController);
 
 
 
-app.get("/", (req, res) => {
-  res.send("Basic Express App - ROOT");
-});
 
 
 // 404 catch all
