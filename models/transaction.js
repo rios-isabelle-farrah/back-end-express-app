@@ -1,14 +1,14 @@
 module.exports = [
     {
-    date: '07/09/20',
-    name: "rent",
-    amount: 0,
-    sampleQuestionCheck:false
+    date: '2021-06-08',
+    name: "mortgage",
+    amount: 2000
+    },
 
-    }
-
-
-
+   { date: '2021-06-08',
+    name: "wine and chocolate",
+    amount: 50
+   }
 
 
 
