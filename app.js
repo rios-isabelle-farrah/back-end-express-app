@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 /////////////////////////////////////
 // REMOVE AFTER SUCCESSFUL DEPLOYMENT
 /////////////////////////////////////
-const db = require("../back-end-express-app/db/config.js");
+const db = require("./db/config.js");
 
 app.get("/test", async (req, res) => {
   try {
