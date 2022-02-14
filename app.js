@@ -38,7 +38,7 @@ const db = require("../back-end-express-app/db/config.js");
 
 app.get("/test", async (req, res) => {
   try {
-    const allDays = await db.any("SELECT * FROM test");
+    const allDays = await db.any("SELECT * FROM days");
     res.json(allDays);
   } catch (err) {
     res.json(err);
