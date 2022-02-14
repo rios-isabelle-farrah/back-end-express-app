@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS portal;
+-- DROP TABLE IF EXISTS portal;
 
 
-\c portal;
+-- \c portal;
 
-CREATE TABLE portal (
+CREATE TABLE days (
     id SERIAL PRIMARY KEY, 
     name TEXT
 );

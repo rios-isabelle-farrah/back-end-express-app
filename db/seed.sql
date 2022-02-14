@@ -1,6 +1,6 @@
-\c portal;
+-- \c portal;
 
-INSERT INTO portal (name) VALUES
+INSERT INTO days (name) VALUES
 ('Monday'),
 ('Tuesday'),
 ('Wednesday'),
