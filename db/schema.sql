@@ -1,4 +1,4 @@
--- DROP TABLE IF EXISTS days;
+ DROP TABLE IF EXISTS cars;
 
 -- \c portal;
 
