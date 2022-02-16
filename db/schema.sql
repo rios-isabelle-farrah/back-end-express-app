@@ -3,10 +3,26 @@
 -- \c portal;
 
 
-CREATE TABLE days (
-    id SERIAL PRIMARY KEY, 
-    name TEXT
-);
+-- CREATE TABLE days (
+--     id SERIAL PRIMARY KEY, 
+--     name TEXT
+-- );
+
+CREATE TABLE
+    cars(
+        id SERIAL PRIMARY key,
+        make TEXT not null,
+        model TEXT not null,
+        vin TEXT not null,
+        year INT not null,
+        odometer INT not null, 
+        doors INT not null,
+        is_default BOOLEAN NOT NULL,
+        uid TEXT not null,
+        driver TEXT not null
+    );
+
+
 
 
 
