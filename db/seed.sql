@@ -1,13 +1,13 @@
 INSERT INTO
-    cars(make, model, vin, year, odometer, doors, is_default,uid, driver)
+    notes(makenote, notemodeltype, vdetails,noteyear, order_iep, disability, is_default,uid, due_date)
 VALUES 
-    ('Dodge','Charger','1234567890AUPMNTR',2005,90000,4,FALSE, 'abcd', 'Durdona'),
-    ('Chevy','Impala','4544567890AUPMNTR',2010,50000,4,FALSE, 'efgh', 'Joshua'),
-    ('Ford','Mustang','9894567890AUPMNTR',2015,30000,4,FALSE, 'ijkl', 'Damien');
+    ('iep','legal','1234567890AUPMNTR',2005,90000,4,FALSE, 'abcd', 'yes'),
+    ('hearing','legal','4544567890AUPMNTR',2010,50000,4,FALSE, 'efgh', 'yes'),
+    ('clinic','legal','9894567890AUPMNTR',2015,30000,4,FALSE, 'ijkl', 'yes');
 
 
 
-
+---- makenotenotenotenote, notenotenotenotemodeltypetypetypetype, vdetails, notenotenotnoteyear, order_iep, disabiliy, is_default, uid, due_date 
 
 
 -- \c portal;
@@ -25,7 +25,7 @@ VALUES
 
 
 -- INSERT INTO
---     cars(make, model, vin, year, odometer, doors, is_default,uid, driver)
+--     notes(makenote, notemodeltype, vdetails,noteyear, order_iep, disability, is_default,uid, due_date)
 -- VALUES 
 --     ('Dodge','Charger','1234567890AUPMNTR',2005,90000,4,FALSE, 'abcd', 'Durdona'),
 --     ('Chevy','Impala','4544567890AUPMNTR',2010,50000,4,FALSE, 'efgh', 'Joshua'),
@@ -33,18 +33,18 @@ VALUES
 
 
 -- INSERT INTO
---     expenses( car_id,expense_type, business_use, amount_spent, date)
+--     expenses( note_id,expense_type, business_use, amount_spent, date)
 -- VALUES 
 -- (1,'Gas',TRUE,100,'2021-01-12'),
 -- (2,'Repairs',TRUE,700,'2021-02-10'),
--- (2,'Car Insurance',FALSE,150,'2021-08-21'),
+-- (2,'note Insurance',FALSE,150,'2021-08-21'),
 -- (1,'Oil Change',TRUE,40,'2021-05-15'),
--- (1,'Car Insurance',TRUE,150,'2021-05-15'),
+-- (1,'note Insurance',TRUE,150,'2021-05-15'),
 -- (1,'Repairs',TRUE,400,'2021-05-15'),
 -- (1,'Depreciation',FALSE,40,'2021-05-15'),
 -- (1,'Registration fees',TRUE,120,'2021-05-15'),
 -- (2,'Oil Change',FALSE,40,'2021-05-15'),
--- (3,'Car Insurance',TRUE,150,'2021-05-15'),
+-- (3,'note Insurance',TRUE,150,'2021-05-15'),
 -- (2,'Gas',TRUE,100,'2021-01-12'),
 -- (3,'Repairs',TRUE,500,'2021-05-15'),
 -- (2,'Depreciation',FALSE,40,'2021-05-15'),
@@ -57,8 +57,8 @@ VALUES
 
 --  -- seed trips
 -- INSERT INTO
---     trips(car_id,business_use,miles,date,reason,favorite)
---     -- start_odometer,stop_odometer,
+--     trips(note_id,business_use,miles,date,reason,favorite)
+--     -- start_order_iep,stop_order_iep,
 -- VALUES 
 -- (1,TRUE,120,'2021-11-11','delivery',false),
 -- (2,TRUE,150,'2021-01-14','date night',TRUE),

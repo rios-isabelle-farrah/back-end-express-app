@@ -1,4 +1,5 @@
- DROP TABLE IF EXISTS cars;
+ DROP TABLE IF EXISTS notes;
+-- makenotenotenote, notenotenotemodeltypetypetype, vdetails, notenotenoteyear, order_iep, disabiliy, is_default, uid, due_date 
 
 -- \c portal;
 
@@ -9,17 +10,17 @@
 -- );
 
 CREATE TABLE
-    cars(
+    notes(
         id SERIAL PRIMARY key,
-        make TEXT not null,
-        model TEXT not null,
-        vin TEXT not null,
-        year INT not null,
-        odometer INT not null, 
-        doors INT not null,
+        makenote TEXT not null,
+        notemodeltype TEXT not null,
+        vdetails TEXT not null,
+        noteyear INT not null,
+        order_iep INT not null, 
+        disability INT not null,
         is_default BOOLEAN NOT NULL,
         uid TEXT not null,
-        driver TEXT not null
+        due_date TEXT not null
     );
 
 
@@ -35,17 +36,17 @@ CREATE TABLE
 
 -- DROP TABLE IF EXISTS mileage_db;
 -- CREATE TABLE
---     cars(
+--     notes(
 --         id SERIAL PRIMARY key,
---         make TEXT not null,
---         model TEXT not null,
---         vin TEXT not null,
---         year INT not null,
---         odometer INT not null, 
---         doors INT not null,
+--         makenote TEXT not null,
+--         notemodeltype TEXT not null,
+--         vdetails TEXT not null,
+--         noteyear INT not null,
+--         order_iep INT not null, 
+--         disability INT not null,
 --         is_default BOOLEAN NOT NULL,
 --         uid TEXT not null,
---         driver TEXT not null
+--         due_date TEXT not null
 --     );
 
 --  CREATE TABLE
@@ -53,7 +54,7 @@ CREATE TABLE
 --         id SERIAL PRIMARY key,
 --         expense_type TEXT NOT NULL,
 --         business_use BOOLEAN NOT NULL,
---         car_id INT REFERENCES cars (id) ON DELETE CASCADE,
+--         note_id INT REFERENCES notes (id) ON DELETE CASCADE,
 --         amount_spent TEXT NOT NULL,
 --         date TEXT 
 --     );
@@ -61,7 +62,7 @@ CREATE TABLE
 -- CREATE TABLE
 --     trips(
 --         id SERIAL PRIMARY key,
---         car_id INT REFERENCES cars (id) ON DELETE CASCADE,
+--         note_id INT REFERENCES notes (id) ON DELETE CASCADE,
 --         business_use BOOLEAN not null,
 --         miles INT NOT null,
 --         date TEXT,
@@ -87,5 +88,5 @@ CREATE TABLE
 
 
 
-        --  start_odometer INT NOT null,
-        -- stop_odometer INT NOT null,
+        --  start_order_iep INT NOT null,
+        -- stop_order_iep INT NOT null,

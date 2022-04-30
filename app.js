@@ -1,10 +1,9 @@
 // DEPENDENCIES
 const cors = require("cors");
 const express = require("express");
-
 // CONFIGURATION
 const app = express();
-// const carsController = require("./controllers/carsController");
+// const notesController = require("./controllers/notesController");
 
 // MIDDLEWARE
 app.use(cors());
@@ -12,7 +11,7 @@ app.use(express.json()); // Parse incoming JSON
 
 // ROUTES
 
-// app.use("/cars", carsController);
+// app.use("/notes", notesController);
 
 app.get("/", (req, res) => {
   res.send("LEND Parent Support Group Resource Site");
@@ -23,80 +22,80 @@ const db = require("./db/config.js");
 
 
 
-const getAllCars = async (uid) => {
+const getAllNotes = async (uid) => {
   try {
-    const query = "SELECT * FROM cars WHERE uid=$1";
-    const allCars = await db.any(query, uid);
-    return { status: true, payload: allCars };
+    const query = "SELECT * FROM notes WHERE uid=$1";
+    const allNotes = await db.any(query, uid);
+    return { status: true, payload: allNotes };
   } catch (error) {
     return { status: false, payload: error };
   }
 };
 
-const getCar = async (id, uid) => {
+const getNote = async (id, uid) => {
   try {
-    const query = "SELECT * FROM cars WHERE id=$1 and uid=$2";
-    const car = await db.one(query, [id, uid]);
-    return { status: true, payload: car };
+    const query = "SELECT * FROM notes WHERE id=$1 and uid=$2";
+    const note = await db.one(query, [id, uid]);
+    return { status: true, payload: note };
   } catch (error) {
     return { status: false, payload: error };
   }
 };
 
-const addCar = async (car) => {
-  const { make, model, vin, year, odometer, doors, is_default, uid, driver } =
-    car;
+const addNote = async (note) => {
+  const {makenote, notemodeltype, vdetails, noteyear, order_iep, disabiliy, is_default, uid, due_date } =
+    note;
   try {
     const query =
-      "INSERT INTO cars (make, model, vin, year, odometer, doors, is_default, uid, driver) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
-    const newCar = await db.one(query, [
-      make,
-      model,
-      vin,
-      year,
-      odometer,
-      doors,
+      "INSERT INTO notes (makenote, notemodeltype, vdetails, noteyear, order_iep, disabiliy, is_default, uid, due_date) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING *";
+    const newNote = await db.one(query, [
+      makenote,
+      notemodeltype,
+      vdetails,
+      noteyear,
+      order_iep,
+      disabiliy,
       is_default,
       uid,
-      driver,
+      due_date,
     ]);
-    return { status: true, payload: newCar };
+    return { status: true, payload: newNote };
   } catch (error) {
     return { status: false, payload: error };
   }
 };
 
-const deleteCar = async (id, uid) => {
+const deleteNote = async (id, uid) => {
   try {
-    const query = "DELETE FROM cars WHERE id=$1 AND uid=$2 RETURNING *";
-    const deletedCar = await db.one(query, [id, uid]);
-    return { status: true, payload: deletedCar };
+    const query = "DELETE FROM notes WHERE id=$1 AND uid=$2 RETURNING *";
+    const deletedNote = await db.one(query, [id, uid]);
+    return { status: true, payload: deletedNote };
   } catch (error) {
     return { status: false, payload: error };
   }
 };
 
-const updateCar = async (id, body, uid) => {
-  const { make, model, vin, year, odometer, doors, is_default, driver } = body;
-  const queryOne = "SELECT * FROM cars WHERE uid=$1 AND id=$2";
+const updateNote = async (id, body, uid) => {
+  const { makenote, notemodeltype, vdetails, noteyear, order_iep, disabiliy, is_default, due_date } = body;
+  const queryOne = "SELECT * FROM notes WHERE uid=$1 AND id=$2";
   const authCheck = await db.any(queryOne, [uid, id]);
   if (authCheck.length) {
     try {
       const query =
-        "UPDATE cars SET make=$1, model=$2, vin=$3, year=$4, odometer=$5, doors=$6, is_default=$7,driver=$8, uid=$9  WHERE id=$10 RETURNING *";
-      const updatedCar = await db.one(query, [
-        make,
-        model,
-        vin,
-        year,
-        odometer,
-        doors,
+        "UPDATE notes SET makenote=$1, notemodeltype=$2, vdetails=$3, noteyear=$4, order_iep=$5, disabiliy=$6, is_default=$7,due_date=$8, uid=$9  WHERE id=$10 RETURNING *";
+      const updatedNote = await db.one(query, [
+        makenote,
+        notemodeltype,
+        vdetails,
+        noteyear,
+        order_iep,
+        disabiliy,
         is_default,
-        driver,
+        due_date,
         uid,
         id,
       ]);
-      return { status: true, payload: updatedCar };
+      return { status: true, payload: updatedNote };
     } catch (error) {
       return { status: false, payload: error };
     }
@@ -105,63 +104,63 @@ const updateCar = async (id, body, uid) => {
   }
 };
 
-app.get("cars/", async (req, res) => {
+app.get("notes/", async (req, res) => {
   const uid = req.query.uid;
   try {
-    const allCars = await getAllCars(uid);
-    res.json(allCars);
+    const allnotes = await getAllNotes(uid);
+    res.json(allnotes);
   } catch (error) {
     return error;
   }
 });
 
 
-app.get("cars/:id", async (req, res) => {
+app.get("notes/:id", async (req, res) => {
   const { id } = req.params;
   const uid = req.query.uid;
   try {
-    const car = await getCar(id, uid);
-    res.json(car);
+    const note = await getNote(id, uid);
+    res.json(note);
   } catch (error) {
     return error;
   }
 });
 
-app.post("/cars", async (req, res) => {
+app.post("/notes", async (req, res) => {
   try {
-    const cars = await addCar(req.body);
-    res.json(cars);
+    const notes = await addNote(req.body);
+    res.json(notes);
   } catch (error) {
     return error;
   }
 });
 
-app.delete("cars/:id", async (req, res) => {
+app.delete("notes/:id", async (req, res) => {
   const { id } = req.params;
   const uid = req.query.uid;
   try {
-    const car = await deleteCar(id, uid);
-    res.json(car);
+    const note = await deleteNote(id, uid);
+    res.json(note);
   } catch (error) {
     return error;
   }
 });
 
-app.put("cars/:id", async (req, res) => {
+app.put("notes/:id", async (req, res) => {
   const { body, params } = req;
   const { id } = params;
   const uid = req.query.uid;
   try {
-    const car = await updateCar(id, body, uid);
-    res.json(car);
+    const note = await updateNote(id, body, uid);
+    res.json(note);
   } catch (error) {
     return error;
   }
 });
 
-app.get("/testcars", async (req, res) => {
+app.get("/testNotes", async (req, res) => {
   try {
-    const allDays = await db.any("SELECT * FROM cars");
+    const allDays = await db.any("SELECT * FROM notes");
     res.json(allDays);
   } catch (err) {
     res.json(err);
@@ -278,7 +277,7 @@ module.exports = app;
 
 // // CONFIGURATION
 // const app = express();
-// // const carsController = require("./controllers/carsController");
+// // const notesController = require("./controllers/notesController");
 
 // // MIDDLEWARE
 // app.use(cors());
@@ -286,7 +285,7 @@ module.exports = app;
 
 // // ROUTES
 
-// // app.use("/cars", carsController);
+// // app.use("/notes", notesController);
 
 // app.get("/", (req, res) => {
 //   res.send("LEND Parent Support Group Resource Site");
