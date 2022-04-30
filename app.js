@@ -36,9 +36,9 @@ const getNote = async (id, uid) => {
   try {
     const query = "SELECT * FROM notes WHERE id=$1 and uid=$2";
     const note = await db.one(query, [id, uid]);
-    return { status: true, payload: note };
+    return {status: true, payload: note};
   } catch (error) {
-    return { status: false, payload: error };
+    return {status: false, payload: error};
   }
 };
 
@@ -158,7 +158,7 @@ app.put("notes/:id", async (req, res) => {
   }
 });
 
-app.get("/testNotes", async (req, res) => {
+app.get("/testnotes", async (req, res) => {
   try {
     const allDays = await db.any("SELECT * FROM notes");
     res.json(allDays);
